@@ -18,7 +18,10 @@ class HeadHunterApi(Api):
 
     def get_vacancies(self, job_title):
         """Запрос к API HH и парсинг полученных вакансий"""
-        req = requests.get(self.url)
+        params = {'text': job_title,
+                  'per_page': 50
+                  }
+        req = requests.get(self.url, params=params)
         data = req.content.decode()
         req.close()
         js_obj = json.loads(data)
