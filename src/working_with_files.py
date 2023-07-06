@@ -55,7 +55,7 @@ class JsonWorkingWithFile(WorkingWithFile):
     def top_salary_vacancy(obj):
         with open('vacancy.json', mode='r', encoding='utf8') as file:
             obj = json.load(file)
-            object_ = sorted(obj, key=lambda salary: salary['З/п от'])
+            object_ = sorted(obj, key=lambda salary: salary['З/п до'])
             print(object_)
 
     # def read_file(self, file_name):
