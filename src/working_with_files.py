@@ -49,13 +49,17 @@ class JsonWorkingWithFile(WorkingWithFile):
                     if vacancy in v['Профессия']:
                         print(v)
                 except Exception:
-                    raise Exception("Извините вакансия не найдена =(")
+                    raise Exception("Извините, вакансия не найдена")
 
     @staticmethod
     def top_salary_vacancy(obj):
         with open('vacancy.json', mode='r', encoding='utf8') as file:
             obj = json.load(file)
-            object_ = sorted(obj, key=lambda salary: salary['З/п до'])
+            for i in obj:
+                if i['З/п до'] is None:
+                    i['З/п до'] = 0
+
+            object_ = sorted(obj, key=lambda salary: salary['З/п до'], reverse=True)
             print(object_)
 
     # def read_file(self, file_name):
